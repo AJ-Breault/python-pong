@@ -1,49 +1,29 @@
 from turtle import Turtle, Screen
 from ball import Ball
+from paddle import Paddle
 
-
+#Creating screen background
 screen = Screen()
 screen.setup(width = 600, height = 600)
 screen.bgcolor("black")
-paddles = []
-positions = [(-280, 0), (280, 0)]
 ball = Ball()
 
-for position in positions:
-    paddle = Turtle()
-    paddle.color("white")
-    paddle.shape("square")
-    paddle.shapesize(4, 1)
-    paddle.penup()
-    paddle.goto(position)
-    paddles.append(paddle)
+# Creating both paddles
+left_paddle = Paddle((-280, 0))
+right_paddle = Paddle((280, 0))
 
-def move_up():
-    p = paddles[0]
-    p.goto(p.xcor(), p.ycor() + 20)
-
-def move_down():
-    p = paddles[0]
-    p.goto(p.xcor(), p.ycor() - 20)
-
-
-
-screen.onkeypress(move_up, "w")
-screen.onkeypress(move_down, "s")
+# User paddle movements
+screen.onkeypress(left_paddle.move_up, "Up")
+screen.onkeypress(left_paddle.move_down, "Down")
 screen.listen()
 
 
-ball.random_direction()
-
+# Game mechanics calling on classes
 game_on = True
 while game_on:
+    ball.move()
+    ball.wall_collision()
 
-    if -280 < ball.pongball.xcor() < 280:
-        ball.move()
-    else:
-        game_on = False
-
-        #next task make ball bounce when it hits a wall
 
 
 
