@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 from ball import Ball
 from scoreboard import Scoreboard
 import time
@@ -51,12 +51,12 @@ while game_on:
         ball.paddle_collision()
 
     if ball.pong_ball.xcor() > 385:
-        user_score.update_score(ball)
+        user_score.update_score()
         ball.reset()
         time.sleep(1)
 
     elif ball.pong_ball.xcor() < -385:
-        bot_score.update_score(ball)
+        bot_score.update_score()
         ball.reset()
         time.sleep(1)
 
