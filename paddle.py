@@ -12,8 +12,19 @@ class Paddle(Turtle):
 
         # Connecting user paddle to a keybind
         def move_up(self):
-            self.goto(self.xcor(), self.ycor() + 20)
+            self.goto(self.xcor(), self.ycor() + 30)
 
         def move_down(self):
-            self.goto(self.xcor(), self.ycor() - 20)
+            self.goto(self.xcor(), self.ycor() - 30)
+
+        def paddle_2_bot(self, ball):
+            if self.ycor() < ball.pong_ball.ycor():
+                self.goto(self.xcor(), self.ycor() + 7.5)
+            elif self.ycor() > ball.pong_ball.ycor():
+                self.goto(self.xcor(), self.ycor() - 7.5)
+
+
+
+
+
 

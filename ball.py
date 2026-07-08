@@ -1,4 +1,5 @@
 from turtle import Turtle
+import time
 import random
 
 class Ball:
@@ -8,8 +9,8 @@ class Ball:
         self.pong_ball.color("white")
         self.pong_ball.penup()
 
-        self.x_move = random.choice([-10, 10])
-        self.y_move = random.choice([-10, 10])
+        self.x_move = random.choice([-10,10])
+        self.y_move = random.choice([-10,10])
 
     def move(self):
         new_x = self.pong_ball.xcor() + self.x_move
@@ -19,6 +20,18 @@ class Ball:
     def wall_collision(self):
         if self.pong_ball.ycor() > 280 or self.pong_ball.ycor() < -280:
             self.y_move *= -1
+
+    def paddle_collision(self):
+        self.x_move *= -1
+
+    def reset(self):
+        self.pong_ball.teleport(0,0)
+        time.sleep(1)
+        self.x_move = random.choice([-10, 10])
+        self.y_move = random.choice([-10, 10])
+        new_x = self.pong_ball.xcor() + self.x_move
+        new_y = self.pong_ball.ycor() + self.y_move
+        self.pong_ball.goto(new_x, new_y)
 
 
 
